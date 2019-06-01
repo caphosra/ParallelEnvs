@@ -25,7 +25,7 @@ namespace Com.Capra314Cabra.ParallelEnvs
 
         public string ApplicationWorkDirectoryPath { get; }
 
-        public string FILE_NAME = "\\Settings.penvs";
+        public const string FILE_NAME = "\\Settings.penvs";
 
         public ParallelEnvsSettings()
         {

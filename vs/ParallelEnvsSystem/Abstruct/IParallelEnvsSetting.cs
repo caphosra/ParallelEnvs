@@ -3,7 +3,6 @@
 // IParallelEnvsSetting.cs
 //
 //
-
 using System.Collections.Generic;
 
 namespace Com.Capra314Cabra.ParallelEnvs
