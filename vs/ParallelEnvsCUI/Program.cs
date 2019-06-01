@@ -57,7 +57,7 @@ namespace Com.Capra314Cabra.ParallelEnvs.CUI
                         var helpText = CommandStore.Commands
                             .Where(cmd => (cmd.CommandName == commandName))
                             .Select(cmd => cmd.Description)
-                            .First();
+                            .FirstOrDefault();
 
                         Console.WriteLine(helpText);
                     }
@@ -65,8 +65,9 @@ namespace Com.Capra314Cabra.ParallelEnvs.CUI
 
                 var command = CommandStore.Commands
                     .Where(cmd => (cmd.CommandName == inputs[0]))
-                    .First();
-                command.Execute(inputs.Skip(1).ToList());
+                    .FirstOrDefault();
+
+                command?.Execute(inputs.Skip(1).ToList());
 
                 Console.WriteLine();
             }
