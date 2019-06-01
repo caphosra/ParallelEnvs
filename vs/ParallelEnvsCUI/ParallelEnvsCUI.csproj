@@ -1,18 +1,21 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
+    <OutputType>Exe</OutputType>
     <TargetFramework>netcoreapp2.1</TargetFramework>
-    <RootNamespace>Com.Capra314Cabra.ParallelEnvs</RootNamespace>
-    <ApplicationIcon />
-    <Win32Resource />
+    <RootNamespace>Com.Capra314Cabra.ParallelEnvs.CUI</RootNamespace>
     <Authors>Akihisa Yagi</Authors>
     <Company>capra314cabra</Company>
-    <Copyright>©2019 Akihisa Yagi</Copyright>
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
     <PackageProjectUrl>https://github.com/capra314cabra/ParallelEnvs</PackageProjectUrl>
     <RepositoryUrl>https://github.com/capra314cabra/ParallelEnvs.git</RepositoryUrl>
     <RepositoryType>Git</RepositoryType>
+    <Copyright>©2019 Akihisa Yagi</Copyright>
   </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\ParallelEnvsSystem\ParallelEnvsSystem.csproj" />
+  </ItemGroup>
 
   <ItemGroup>
     <None Include="..\..\LICENSE">
