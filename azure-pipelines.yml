@@ -1,0 +1,20 @@
+#
+# .NET Core Test for ParallelEnvs
+#
+
+trigger:
+- master
+
+pool:
+- vmImage: 'ubuntu-latest'
+
+variables:
+- testProjectPath: '/vs/ParallelEnvsTest/'
+- buildConfiguration: 'Release'
+
+steps:
+- script: |
+    pushd $(testProjectPath)
+    dotnet test
+    popd
+  displayName: "xUnit"
