@@ -6,15 +6,28 @@ trigger:
 - master
 
 pool:
-- vmImage: 'ubuntu-latest'
+  vmImage: 'ubuntu-latest'
 
 variables:
-- testProjectPath: '/vs/ParallelEnvsTest/'
-- buildConfiguration: 'Release'
+  testProjectPath: ''
+  buildConfiguration: 'Release'
 
 steps:
+- task: DotNetCoreInstaller@0
+  inputs:
+    version: '2.2.300'
 - script: |
-    pushd $(testProjectPath)
+    dotnet --version
+  displayName: 'DotNet Version'
+- script: |
+    dotnet build
+  displayName: 'ParallelEnvs Build'
+  workingDirectory: './vs/ParallelEnvsSystem/'
+- script: |
+    dotnet build
+  displayName: 'ParallelEnvs CUI tool Build'
+  workingDirectory: './vs/ParallelEnvsCUI/'
+- script: |
     dotnet test
-    popd
-  displayName: "xUnit"
+  displayName: 'xUnit Test'
+  workingDirectory: './vs/ParallelEnvsTest/'
