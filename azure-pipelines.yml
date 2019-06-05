@@ -9,16 +9,17 @@ pool:
   vmImage: 'ubuntu-latest'
 
 variables:
-  testProjectPath: ''
   buildConfiguration: 'Release'
+  dotnetInstallVersion: '2.2.300'
 
 steps:
 - task: DotNetCoreInstaller@0
   inputs:
-    version: '2.2.300'
+    version: $(dotnetInstallVersion)
+  displayName: 'dotnet Install'
 - script: |
     dotnet --version
-  displayName: 'DotNet Version'
+  displayName: 'dotnet Version'
 - script: |
     dotnet build
   displayName: 'ParallelEnvs Build'
@@ -28,6 +29,12 @@ steps:
   displayName: 'ParallelEnvs CUI tool Build'
   workingDirectory: './vs/ParallelEnvsCUI/'
 - script: |
-    dotnet test
+    dotnet test --logger trx
   displayName: 'xUnit Test'
   workingDirectory: './vs/ParallelEnvsTest/'
+- task: PublishTestResults@2
+  condition: succeededOrFailed()
+  inputs:
+    testRunner: VSTest
+    testResultsFiles: '**/*.trx'
+  displayName: 'Publish the test results'
